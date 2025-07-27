@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Reserve Table {{ table_id }}</h2>
+<form method="POST">
+    <label for="time_slot">Time Slot:</label>
+    <input type="text" id="time_slot" name="time_slot" required>
+    <button type="submit">Reserve</button>
+</form>
+{% endblock %}

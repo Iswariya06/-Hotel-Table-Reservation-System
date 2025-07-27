@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Available Tables</h2>
+<ul>
+    {% for table_id, table in tables.items() %}
+    <li>
+        Table {{ table_id }} 
+        {% if isinstance(table.state, ReservedState) %}
+        - Reserved by {{ table.reservation_details.user.name }} at {{ table.reservation_details.time_slot }}
+        {% else %}
+        - <a href="{{ url_for('reserve', table_id=table_id) }}">Reserve</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+C:\Users\Iswariya\Desktop\pdp\templates\index.html

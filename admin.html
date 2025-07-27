@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Admin Panel</h2>
+<h3>All Tables</h3>
+<ul>
+    {% for table_id, table in tables.items() %}
+    <li>
+        Table {{ table_id }}
+        {% if isinstance(table.state, ReservedState) %}
+        - Reserved by {{ table.reservation_details.user.name }} at {{ table.reservation_details.time_slot }}
+        {% else %}
+        - Available
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>Reserved Tables</h3>
+<ul>
+    {% for table_id, table in reserved_tables.items() %}
+    <li>
+        Table {{ table_id }} reserved by {{ table.reservation_details.user.name }} at {{ table.reservation_details.time_slot }}
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>Add New Table</h3>
+<form method="POST">
+    <label for="table_id">Table ID:</label>
+    <input type="number" id="table_id" name="table_id" required>
+    <button type="submit">Add Table</button>
+</form>
+{% endblock %}
